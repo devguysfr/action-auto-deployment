@@ -1,0 +1,24 @@
+name: 'Auto Deployment'
+description: 'Deploy your project on a distant server using SSH or FTP protocol'
+inputs:
+  host:
+    description: 'Hostname of the server'
+    required: true
+  username:
+    description: 'username to use'
+    required: true
+  password:
+    description: 'password to use'
+    required: true
+  port:
+    description: 'port to use'
+    required: true
+  source:
+    description: 'local path'
+    default: '/'
+  target:
+    description: 'remote target'
+    default: '/home/${{ inputs.username }}'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
