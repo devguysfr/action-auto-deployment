@@ -83,12 +83,14 @@ let run = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const ssh = new node_ssh_1.NodeSSH();
         let sshCon = yield connect(ssh, core.getInput('host'), core.getInput('username'), core.getInput('password'), parseInt(core.getInput('port')));
+        core.setOutput('AutoDeploy', 'Connection - OK');
         yield upload(sshCon, core.getInput('source'), core.getInput('target'));
+        core.setOutput('AutoDeploy', 'Upload - OK');
         process.exit(0);
     }
     catch (error) {
         core.setFailed(error);
-        process.exit(84);
+        process.exit(1);
     }
 });
 run();

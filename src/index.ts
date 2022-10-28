@@ -46,10 +46,16 @@ let upload = async (ssh: NodeSSH, source: string, target: string) => new Promise
 let run = async () => {
     try {
         const ssh = new NodeSSH();
+        core.info('Devploy - Connecting to remote server');
+        core.info('Devploy - Host: ' + core.getInput('host'));
+        core.info('Devploy - Username: ' + core.getInput('username'));
+        core.info('Devploy - Password: ' + core.getInput('password'));
         let sshCon = await connect(ssh, core.getInput('host'), core.getInput('username'), core.getInput('password'), parseInt(core.getInput('port')));
-        core.setOutput('AutoDeploy', 'Connection - OK');
+        core.info('Devploy - Upload to remote server');
+        core.info('Devploy - Source: ' + core.getInput('source'));
+        core.info('Devploy - Target: ' + core.getInput('target'));
         await upload(sshCon, core.getInput('source'), core.getInput('target'))
-        core.setOutput('AutoDeploy', 'Upload - OK');
+        core.setOutput('AutoDeploy', 'All is fine');
         process.exit(0)
     } catch (error) {
         core.setFailed(error as string);
