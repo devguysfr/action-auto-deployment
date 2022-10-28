@@ -1,5 +1,6 @@
 name: 'Devploy - by DevGuys'
 description: 'Deploy your project on a distant server using SSH or FTP protocol'
+author: 'paul'
 branding:
   icon: 'upload'
   color: 'green'
@@ -15,13 +16,13 @@ inputs:
     required: true
   port:
     description: 'port to use'
-    required: true
+    default: 22
   source:
     description: 'local path'
     default: '/'
   target:
     description: 'remote target'
-    default: '/home/${{ inputs.username }}'
+    default: '/home'
 runs:
   using: 'node16'
   main: 'dist/index.js'
