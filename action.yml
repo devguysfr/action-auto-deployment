@@ -1,5 +1,8 @@
 name: 'Devploy - by DevGuys'
 description: 'Deploy your project on a distant server using SSH or FTP protocol'
+branding:
+  icon: 'upload'
+  color: 'green'
 inputs:
   host:
     description: 'Hostname of the server'
