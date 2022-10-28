@@ -79,13 +79,19 @@ let upload = (ssh, source, target) => __awaiter(void 0, void 0, void 0, function
         }
     }));
 });
+/*
+    * Execute on start to connect & upload the directory specified in the remote server
+*/
 let run = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const ssh = new node_ssh_1.NodeSSH();
+        core.info('Devploy - Connecting to remote server');
         let sshCon = yield connect(ssh, core.getInput('host'), core.getInput('username'), core.getInput('password'), parseInt(core.getInput('port')));
-        core.setOutput('AutoDeploy', 'Connection - OK');
+        core.info('Devploy - Upload to remote server');
         yield upload(sshCon, core.getInput('source'), core.getInput('target'));
-        core.setOutput('AutoDeploy', 'Upload - OK');
+        if (core.getInput('execute') !== '')
+            yield sshCon.execCommand(core.getInput('execute'));
+        core.setOutput('AutoDeploy', 'All is fine');
         process.exit(0);
     }
     catch (error) {

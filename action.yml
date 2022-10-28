@@ -23,6 +23,9 @@ inputs:
   target:
     description: 'remote target'
     default: '/home'
+  execute:
+    description: 'Execute the specified command after deployment'
+    default: ''
 runs:
   using: 'node16'
   main: 'dist/index.js'
