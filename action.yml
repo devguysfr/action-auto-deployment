@@ -1,4 +1,4 @@
-name: 'Auto Deployment'
+name: 'Devploy - by DevGuys'
 description: 'Deploy your project on a distant server using SSH or FTP protocol'
 inputs:
   host:
